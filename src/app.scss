@@ -1,0 +1,24 @@
+#root {
+
+  width: 100%;
+  height: auto;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.header {
+  display: block;
+  background: #ee7335;
+  height: 60px;
+  color: #fff;
+  vertical-align: middle;
+}
+
+.appBody {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: auto;;
+}
