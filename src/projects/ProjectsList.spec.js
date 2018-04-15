@@ -11,18 +11,14 @@ describe('<ProjectsList/>', () => {
   let wrapper;
   const one = 1;
   const two = 2;
-  it('the component renders', () => {
-    const wrapper = shallow(<ProjectsListComponent projects={[]} />);
-    expect(wrapper.find('div')).to.have.length(one);
-  });
 
   describe('when no projects are present', () => {
     beforeEach(() => {
       wrapper = shallow(<ProjectsListComponent projects={[]} />);
     });
     it('shows "No projects are active"', () => {
-      expect(wrapper.find('.projects')).to.have.length(one);
-      expect(wrapper.find('.projects').text()).to.contain('No projects are active');
+      expect(wrapper.find('.listProjects--projects')).to.have.length(one);
+      expect(wrapper.find('.listProjects--projects').text()).to.contain('No projects are active');
     });
   });
 
@@ -36,8 +32,8 @@ describe('<ProjectsList/>', () => {
     });
 
     it('does not show "No projects are active"', () => {
-      expect(wrapper.find('.projects')).to.have.length(one);
-      expect(wrapper.find('.projects').text())
+      expect(wrapper.find('.listProjects--projects')).to.have.length(one);
+      expect(wrapper.find('.listProjects--projects').text())
         .not.to.contain('No projects are active');
     });
 
