@@ -17,12 +17,13 @@
     "url-loader": "^1.0.1"
   },
   "scripts": {
-    "build": "./node_modules/.bin/webpack",
+    "build": "./node_modules/.bin/webpack --config webpack.prod.config.js",
     "start": "./node_modules/.bin/webpack-dev-server --progress",
     "lint": "./node_modules/.bin/eslint webpack.config.* src tools --color",
     "lint:watch": "npm run lint -- --watch",
     "test": "NODE_ENV=test ./node_modules/.bin/mocha --require ignore-styles --require babel-register src/testSetup.js src/**/*.spec.js --reporter spec||exit 0",
-    "postinstall": "yarn build"
+    "postinstall": "yarn build",
+    "start:prod": "node server.js"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
