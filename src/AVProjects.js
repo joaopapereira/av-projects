@@ -27,7 +27,9 @@ export class AVProjectsComponent extends React.Component {
     return (
       <div>
         <div className="header">
-          <img className="avLogo" src={avLogo} alt="AgileVentures"/>
+          <a href='https://www.agileventures.org/' target='new'>
+            <img className="avLogo" src={avLogo} alt="AgileVentures"/>
+          </a>
         </div>
         <div className="appBody">
           <ProjectsListComponent projects={allProjects} />

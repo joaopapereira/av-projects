@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {AVProjectsComponent} from './AVProjects';
+import '../assets/imgs/favicon.ico';
 
 const render = (Component) => {
   ReactDOM.render(

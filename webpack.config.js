@@ -1,5 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+
 module.exports = {
   entry: [
     'react-hot-loader/patch',
@@ -33,13 +35,16 @@ module.exports = {
         }
       }]
     }, {
-      test: /\.(pdf|jpg|png|gif|svg|ico)$/,
-      use: [
-        {
-          loader: 'url-loader'
-        },
-      ]
-    }]
+      test: /\.(svg|png|gif|jpg|ico)$/,
+      include: path.resolve(__dirname, 'assets'),
+      use: {
+          loader: 'file-loader',
+          options: {
+              context: 'assets',
+              name: '[path][name].[ext]'
+          }
+      }
+  }]
   },
   mode: 'development',
   devtool: 'source-map',
@@ -51,6 +56,10 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin()
+    new webpack.NamedModulesPlugin(),
+    new HtmlWebpackPlugin({
+      inject: true,
+      template: path.resolve(__dirname, 'assets/index.html'),
+    })
   ]
 };

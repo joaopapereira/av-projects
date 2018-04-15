@@ -1,12 +1,25 @@
-.projects {
+.listProjects {
   display: flex;
   flex-direction: column;
-  max-width: 500px;
-  min-width: 400px;
+  align-items: center;
 
-  border-radius: 25px;
-  border: 2px solid orange;
-  padding: 20px;
+  &--header {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 20px;
+    align-items: center;
+  }
+
+  &--projects {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    min-width: 400px;
+  
+    border-radius: 25px;
+    border: 2px solid orange;
+    padding: 20px;
+  }
 }
 
 .project {

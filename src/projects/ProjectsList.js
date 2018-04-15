@@ -30,8 +30,13 @@ export class ProjectsListComponent extends React.Component{
   render(){
     const projects = this.renderProject();
     return (
-      <div className='projects'>
-        {projects}
+      <div className='listProjects'>
+        <div className='listProjects--header'>
+        List of Active Projects in Agile Ventures
+        </div>
+        <div className='listProjects--projects'>
+          {projects}
+        </div>
       </div>
     );
   }
