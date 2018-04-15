@@ -21,7 +21,7 @@
     "lint": "./node_modules/.bin/eslint webpack.config.* src tools --color",
     "lint:watch": "npm run lint -- --watch",
     "test": "NODE_ENV=test ./node_modules/.bin/mocha --require ignore-styles --require babel-register src/testSetup.js src/**/*.spec.js --reporter spec||exit 0",
-    "test1": "NODE_ENV=test mocha-webpack --webpack-config webpack.config.js \"src/**/*.spec.js\""
+    "postinstall": "yarn build"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
