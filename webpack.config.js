@@ -38,13 +38,13 @@ module.exports = {
       test: /\.(svg|png|gif|jpg|ico)$/,
       include: path.resolve(__dirname, 'assets'),
       use: {
-          loader: 'file-loader',
-          options: {
-              context: 'assets',
-              name: '[path][name].[ext]'
-          }
+        loader: 'file-loader',
+        options: {
+          context: 'assets',
+          name: '[path][name].[ext]'
+        }
       }
-  }]
+    }]
   },
   mode: 'development',
   devtool: 'source-map',
@@ -59,7 +59,7 @@ module.exports = {
     new webpack.NamedModulesPlugin(),
     new HtmlWebpackPlugin({
       inject: true,
-      template: path.resolve(__dirname, 'assets/index.html'),
+      template: path.resolve(__dirname, 'assets/index.html')
     })
   ]
 };

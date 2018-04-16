@@ -22,7 +22,7 @@ export class Project extends React.Component {
           <span>#</span>
           {tag}
         </div>
-      )
+      );
     });
     return allTagsRows;
   }
