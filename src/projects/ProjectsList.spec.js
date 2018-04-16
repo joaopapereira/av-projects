@@ -23,6 +23,7 @@ describe('<ProjectsList/>', () => {
       projectServiceStub.stubGetProjects(new Promise((resolve) => resolve([])));
       wrapper = shallow(<ProjectsListComponent projectService={projectServiceStub} />);
     });
+
     it('shows "No projects are active"', () => {
       expect(wrapper.find('.listProjects--projects')).to.have.length(one);
       expect(wrapper.find('.listProjects--projects').text())
@@ -51,7 +52,10 @@ describe('<ProjectsList/>', () => {
           .not.to.contain('No projects are active');
         done();
       }, 0);
+    });
 
+    it('displays a search input box', () => {
+      expect(wrapper.find('.listProjects--search')).to.have.length(one);
     });
 
     it('display the project information', (done) => {
@@ -68,6 +72,48 @@ describe('<ProjectsList/>', () => {
           expect(wrapper.find(Project).at(one).text()).to.contain('some project');
           done();
         }, 0);
+      });
+    });
+
+    describe('when searching for a tag', () => {
+      describe('when match one project tag', () => {
+        it('displays only the ones with the search tag', (done) => {
+          wrapper.find('.listProjects--search input').simulate('change', {
+            target: { value: 'rails' }
+          });
+          setTimeout(() => {
+            wrapper.update();
+            expect(wrapper.find(Project)).to.have.length(one);
+            expect(wrapper.find(Project).at(zero).text()).to.contain('some other project');
+            done();
+          }, 0);
+        });
+      });
+      describe('when partially match one project tag', () => {
+        it('displays only the ones with the search tag', (done) => {
+          wrapper.find('.listProjects--search input').simulate('change', {
+            target: { value: 'java' }
+          });
+          setTimeout(() => {
+            wrapper.update();
+            expect(wrapper.find(Project)).to.have.length(one);
+            expect(wrapper.find(Project).at(zero).text()).to.contain('some project');
+            done();
+          }, 0);
+        });
+      });
+
+      describe('when match no project tag', () => {
+        it('displays no project', (done) => {
+          wrapper.find('.listProjects--search input').simulate('change', {
+            target: { value: 'c++' }
+          });
+          setTimeout(() => {
+            wrapper.update();
+            expect(wrapper.find(Project)).to.have.length(zero);
+            done();
+          }, 0);
+        });
       });
     });
   });
