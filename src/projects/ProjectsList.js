@@ -71,7 +71,9 @@ export class ProjectsListComponent extends React.Component {
           List of Active Projects in Agile Ventures
         </div>
         <div className='listProjects--search'>
-          Search languages: <input id='language' type='text' onChange={this.onSearch} />
+          Search languages:&nbsp;
+          <input id='language' type='text'
+            placeholder='Start typing a language' onChange={this.onSearch} />
         </div>
         <div className='listProjects--projects'>
           {projects}
