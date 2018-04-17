@@ -25,11 +25,11 @@ export class ProjectsListComponent extends React.Component {
   }
 
   canDisplayProject(project, searchString) {
-    if (searchString.length > 0) {
+    if (searchString.length > zero) {
       const searchFor = searchString;
       let foundMatch = false;
       project.tags.forEach((tag) => {
-        if (tag.indexOf(searchFor) >= 0) {
+        if (tag.indexOf(searchFor) >= zero) {
           foundMatch = true;
         }
       });

@@ -13,6 +13,8 @@ describe('<ProjectsList/>', () => {
   const zero = 0;
   const one = 1;
   const two = 2;
+  const timeout = 0;
+  const waitTimeForProjectsToLoad = 10;
   let projectServiceStub;
   beforeEach(() => {
     projectServiceStub = new ProjectServiceStub();
@@ -42,7 +44,7 @@ describe('<ProjectsList/>', () => {
       setTimeout(() => {
         wrapper.update();
         done();
-      }, 10);
+      }, waitTimeForProjectsToLoad);
     });
 
     it('does not show "No projects are active"', (done) => {
@@ -51,7 +53,7 @@ describe('<ProjectsList/>', () => {
         expect(wrapper.find('.listProjects--projects').text())
           .not.to.contain('No projects are active');
         done();
-      }, 0);
+      }, timeout);
     });
 
     it('displays a search input box', () => {
@@ -62,7 +64,7 @@ describe('<ProjectsList/>', () => {
       setTimeout(() => {
         expect(wrapper.find(Project)).to.have.length(two);
         done();
-      }, 0);
+      }, timeout);
     });
 
     describe('when more then one project is present', () => {
@@ -71,7 +73,7 @@ describe('<ProjectsList/>', () => {
           expect(wrapper.find(Project).at(zero).text()).to.contain('some other project');
           expect(wrapper.find(Project).at(one).text()).to.contain('some project');
           done();
-        }, 0);
+        }, timeout);
       });
     });
 
@@ -84,9 +86,10 @@ describe('<ProjectsList/>', () => {
           setTimeout(() => {
             wrapper.update();
             expect(wrapper.find(Project)).to.have.length(one);
-            expect(wrapper.find(Project).at(zero).text()).to.contain('some other project');
+            expect(wrapper.find(Project).at(zero).text())
+              .to.contain('some other project');
             done();
-          }, 0);
+          }, timeout);
         });
       });
       describe('when partially match one project tag', () => {
@@ -99,7 +102,7 @@ describe('<ProjectsList/>', () => {
             expect(wrapper.find(Project)).to.have.length(one);
             expect(wrapper.find(Project).at(zero).text()).to.contain('some project');
             done();
-          }, 0);
+          }, timeout);
         });
       });
 
@@ -112,7 +115,7 @@ describe('<ProjectsList/>', () => {
             wrapper.update();
             expect(wrapper.find(Project)).to.have.length(zero);
             done();
-          }, 0);
+          }, timeout);
         });
       });
     });
