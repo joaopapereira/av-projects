@@ -34,23 +34,36 @@
   border-radius: 5px;
   border: 1px solid #000000;
   padding: 20px;
+
+  &:hover {
+    border-width: 1.5px;
+    background-color: #fafafa;
+    cursor: pointer;
+  }
+
+  &--tag {
+    padding-left: 5px;
+    background-color: lightgrey;
+    border-top-left-radius: 25px;
+    margin-right: 10px;
+    
+    &:hover {
+      background-color: black;
+      color: white;
+    }
+    &:after {
+      padding-right: 10px;
+    }
+  }
+
+  &--description {
+    font-size: 14px;
+
+    margin-bottom: 7px;
+    padding-left: 10px;
+  }
 }
 
 .tags {
   display: flex;
-}
-
-.project--tag {
-  padding-left: 5px;
-  background-color: lightgrey;
-  border-top-left-radius: 25px;
-  margin-right: 10px;
-  
-  &:hover {
-    background-color: black;
-    color: white;
-  }
-  &:after {
-    padding-right: 10px;
-  }
 }

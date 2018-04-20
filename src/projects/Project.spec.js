@@ -14,7 +14,7 @@ describe('<ProjectsList/>', () => {
     beforeEach(() => {
       wrapper = shallow((<Project projectModel={
         new ProjectModel('some project', [])
-      } />));
+      } open={true} />));
       wrapper.update();
     });
 
@@ -32,7 +32,7 @@ describe('<ProjectsList/>', () => {
     beforeEach(() => {
       wrapper = shallow((<Project projectModel={
         new ProjectModel('some project', ['javascript'])
-      } />));
+      } open={true} />));
     });
 
     it('display tags', () => {
@@ -43,6 +43,32 @@ describe('<ProjectsList/>', () => {
     it('display the project information', () => {
       expect(wrapper.find('.project--name')).to.have.length(one);
       expect(wrapper.find('.project--name').text()).to.equal('some project');
+    });
+  });
+
+  describe('project is open', () => {
+    beforeEach(() => {
+      wrapper = shallow((<Project projectModel={
+        new ProjectModel('some project', ['javascript'], 'description of some project')
+      } open={true} />));
+    });
+
+    it('displays description', () => {
+      expect(wrapper.find('.project--description')).to.have.length(one);
+      expect(wrapper.find('.project--description').text())
+        .to.contains('description of some project');
+    });
+  });
+
+  describe('project is not open', () => {
+    beforeEach(() => {
+      wrapper = shallow((<Project projectModel={
+        new ProjectModel('some project', ['javascript'], 'description of some project')
+      } open={false}/>));
+    });
+
+    it('does not display description', () => {
+      expect(wrapper.find('.project--description')).to.have.length(zero);
     });
   });
 });

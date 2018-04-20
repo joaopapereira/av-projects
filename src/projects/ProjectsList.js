@@ -12,7 +12,7 @@ const equalTo = 0;
 export class ProjectsListComponent extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { projects: [], searchString: '' };
+    this.state = { projects: [], searchString: '', openIndex: -1 };
     this.props.projectService.getProjects().then(((projects) => {
       this.setState({ projects: projects });
     }).bind(this));
@@ -38,6 +38,10 @@ export class ProjectsListComponent extends React.Component {
     return true;
   }
 
+  onProjectClick(index) {
+    this.setState({ openIndex: index });
+  }
+
   renderProject() {
     if (this.state.projects.length > zero) {
       let projects = [];
@@ -53,7 +57,9 @@ export class ProjectsListComponent extends React.Component {
         .forEach((project, index) => {
           if (this.canDisplayProject(project, this.state.searchString)) {
             projects.push(
-              <Project projectModel={project} key={index} />
+              <Project projectModel={project} key={index}
+                onClick={this.onProjectClick.bind(this, index)}
+                open={this.state.openIndex === index} />
             );
           }
         });

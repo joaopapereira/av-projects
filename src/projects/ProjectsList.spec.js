@@ -36,8 +36,9 @@ describe('<ProjectsList/>', () => {
   describe('when projects are present', () => {
     beforeEach((done) => {
       projectServiceStub.stubGetProjects(new Promise((resolve) => resolve([
-        new ProjectModel('some project', ['javascript']),
-        new ProjectModel('some other project', ['rails'])
+        new ProjectModel('some project', ['javascript'], 'description of some project'),
+        new ProjectModel('some other project',
+          ['rails'], 'description of some other project')
       ])));
 
       wrapper = mount((<ProjectsListComponent projectService={projectServiceStub} />));
@@ -74,6 +75,18 @@ describe('<ProjectsList/>', () => {
           expect(wrapper.find(Project).at(one).text()).to.contain('some project');
           done();
         }, timeout);
+      });
+    });
+
+    describe('when a project is clicked', () => {
+      it('displays description', (done) => {
+        wrapper.find(Project).at(zero).simulate('click');
+        wrapper.update();
+        setTimeout(() => {
+          expect(wrapper.find(Project).at(zero).text())
+            .to.contain('description of some other project');
+          done();
+        });
       });
     });
 
